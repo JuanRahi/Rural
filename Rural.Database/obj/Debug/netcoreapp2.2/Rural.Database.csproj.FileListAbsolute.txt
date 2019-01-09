@@ -1,0 +1,14 @@
+C:\Code\Rural\Rural\Rural.Database\bin\Debug\netcoreapp2.2\Rural.Database.deps.json
+C:\Code\Rural\Rural\Rural.Database\bin\Debug\netcoreapp2.2\Rural.Database.runtimeconfig.json
+C:\Code\Rural\Rural\Rural.Database\bin\Debug\netcoreapp2.2\Rural.Database.runtimeconfig.dev.json
+C:\Code\Rural\Rural\Rural.Database\bin\Debug\netcoreapp2.2\Rural.Database.dll
+C:\Code\Rural\Rural\Rural.Database\bin\Debug\netcoreapp2.2\Rural.Database.pdb
+C:\Code\Rural\Rural\Rural.Database\bin\Debug\netcoreapp2.2\Rural.Utils.dll
+C:\Code\Rural\Rural\Rural.Database\bin\Debug\netcoreapp2.2\Rural.Utils.pdb
+C:\Code\Rural\Rural\Rural.Database\obj\Debug\netcoreapp2.2\Rural.Database.csprojAssemblyReference.cache
+C:\Code\Rural\Rural\Rural.Database\obj\Debug\netcoreapp2.2\Rural.Database.csproj.CoreCompileInputs.cache
+C:\Code\Rural\Rural\Rural.Database\obj\Debug\netcoreapp2.2\Rural.Database.AssemblyInfoInputs.cache
+C:\Code\Rural\Rural\Rural.Database\obj\Debug\netcoreapp2.2\Rural.Database.AssemblyInfo.cs
+C:\Code\Rural\Rural\Rural.Database\obj\Debug\netcoreapp2.2\Rural.Database.csproj.CopyComplete
+C:\Code\Rural\Rural\Rural.Database\obj\Debug\netcoreapp2.2\Rural.Database.dll
+C:\Code\Rural\Rural\Rural.Database\obj\Debug\netcoreapp2.2\Rural.Database.pdb

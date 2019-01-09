@@ -1,0 +1,9 @@
+C:\Code\Rural\Rural\Rural.Utils\bin\Debug\netcoreapp2.0\Rural.Utils.deps.json
+C:\Code\Rural\Rural\Rural.Utils\bin\Debug\netcoreapp2.0\Rural.Utils.dll
+C:\Code\Rural\Rural\Rural.Utils\bin\Debug\netcoreapp2.0\Rural.Utils.pdb
+C:\Code\Rural\Rural\Rural.Utils\obj\Debug\netcoreapp2.0\Rural.Utils.csprojAssemblyReference.cache
+C:\Code\Rural\Rural\Rural.Utils\obj\Debug\netcoreapp2.0\Rural.Utils.csproj.CoreCompileInputs.cache
+C:\Code\Rural\Rural\Rural.Utils\obj\Debug\netcoreapp2.0\Rural.Utils.AssemblyInfoInputs.cache
+C:\Code\Rural\Rural\Rural.Utils\obj\Debug\netcoreapp2.0\Rural.Utils.AssemblyInfo.cs
+C:\Code\Rural\Rural\Rural.Utils\obj\Debug\netcoreapp2.0\Rural.Utils.dll
+C:\Code\Rural\Rural\Rural.Utils\obj\Debug\netcoreapp2.0\Rural.Utils.pdb

@@ -1,0 +1,14 @@
+C:\Code\Rural\Rural\Rural.Repositories\bin\Debug\netcoreapp2.2\Rural.Repositories.deps.json
+C:\Code\Rural\Rural\Rural.Repositories\bin\Debug\netcoreapp2.2\Rural.Repositories.dll
+C:\Code\Rural\Rural\Rural.Repositories\bin\Debug\netcoreapp2.2\Rural.Repositories.pdb
+C:\Code\Rural\Rural\Rural.Repositories\bin\Debug\netcoreapp2.2\Rural.Database.dll
+C:\Code\Rural\Rural\Rural.Repositories\bin\Debug\netcoreapp2.2\Rural.Utils.dll
+C:\Code\Rural\Rural\Rural.Repositories\bin\Debug\netcoreapp2.2\Rural.Database.pdb
+C:\Code\Rural\Rural\Rural.Repositories\bin\Debug\netcoreapp2.2\Rural.Utils.pdb
+C:\Code\Rural\Rural\Rural.Repositories\obj\Debug\netcoreapp2.2\Rural.Repositories.csprojAssemblyReference.cache
+C:\Code\Rural\Rural\Rural.Repositories\obj\Debug\netcoreapp2.2\Rural.Repositories.csproj.CoreCompileInputs.cache
+C:\Code\Rural\Rural\Rural.Repositories\obj\Debug\netcoreapp2.2\Rural.Repositories.AssemblyInfoInputs.cache
+C:\Code\Rural\Rural\Rural.Repositories\obj\Debug\netcoreapp2.2\Rural.Repositories.AssemblyInfo.cs
+C:\Code\Rural\Rural\Rural.Repositories\obj\Debug\netcoreapp2.2\Rural.Repositories.csproj.CopyComplete
+C:\Code\Rural\Rural\Rural.Repositories\obj\Debug\netcoreapp2.2\Rural.Repositories.dll
+C:\Code\Rural\Rural\Rural.Repositories\obj\Debug\netcoreapp2.2\Rural.Repositories.pdb
