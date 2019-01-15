@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rural.Web", "Rural\Rural.Web.csproj", "{9B70F731-B997-454D-A660-FC3FCC9ACD9B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rural.Database", "Rural.Database\Rural.Database.csproj", "{41C1BA11-59CF-401E-9C96-4AC8ECDC83C7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rural.Utils", "Rural.Utils\Rural.Utils.csproj", "{7031ADB5-FE18-40C6-A962-51B26005897A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rural.Business", "Rural.Business\Rural.Business.csproj", "{DFCE520E-7A55-489C-AB79-82DCC06CBD68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rural.Business", "Rural.Business\Rural.Business.csproj", "{DFCE520E-7A55-489C-AB79-82DCC06CBD68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rural.DTOs", "Rural.DTOs\Rural.DTOs.csproj", "{B75CA448-13E4-493D-9E68-1F6DB3F40485}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rural.DTOs", "Rural.DTOs\Rural.DTOs.csproj", "{B75CA448-13E4-493D-9E68-1F6DB3F40485}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rural.Repositories", "Rural.Repositories\Rural.Repositories.csproj", "{B4D28744-7BDC-438C-956C-3C8C43248A28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rural.Repositories", "Rural.Repositories\Rural.Repositories.csproj", "{B4D28744-7BDC-438C-956C-3C8C43248A28}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rural.Web", "Rural.Web\Rural.Web.csproj", "{EF9D2420-1AB7-4BC5-9DA0-072C04975BDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9B70F731-B997-454D-A660-FC3FCC9ACD9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B70F731-B997-454D-A660-FC3FCC9ACD9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B70F731-B997-454D-A660-FC3FCC9ACD9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B70F731-B997-454D-A660-FC3FCC9ACD9B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{41C1BA11-59CF-401E-9C96-4AC8ECDC83C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{41C1BA11-59CF-401E-9C96-4AC8ECDC83C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41C1BA11-59CF-401E-9C96-4AC8ECDC83C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{B4D28744-7BDC-438C-956C-3C8C43248A28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4D28744-7BDC-438C-956C-3C8C43248A28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4D28744-7BDC-438C-956C-3C8C43248A28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF9D2420-1AB7-4BC5-9DA0-072C04975BDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF9D2420-1AB7-4BC5-9DA0-072C04975BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF9D2420-1AB7-4BC5-9DA0-072C04975BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF9D2420-1AB7-4BC5-9DA0-072C04975BDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
