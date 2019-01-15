@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Rural.Business.Interfaces;
 using Rural.Database.Model;
 using Rural.DTOs;
 using Rural.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Rural.Business.Services
@@ -22,8 +24,8 @@ namespace Rural.Business.Services
 
         public IEnumerable<BovineDTO> GetAll()
         {
-            var bovines = Repository.GetAll();
-            return Mapper.Map<List<BovineDTO>>(bovines);
+            var bovines = Repository.GetAll().Include(x => x.Owner).ToArray();
+            return Mapper.Map<BovineDTO[]>(bovines);
         }
 
         public BovineDTO Get(int id)

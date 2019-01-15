@@ -11,7 +11,9 @@ namespace Rural.Business.Mapper
     {
         public DomainProfile()
         {
-            CreateMap<Bovine, BovineDTO>();
+            CreateMap<Bovine, BovineDTO>()
+                .ForMember(dto => dto.OwnerName, e => e.MapFrom(b => b.Owner.Name))
+                .ForMember(dto => dto.OwnerNumber, e => e.MapFrom(b => b.Owner.Number));
         }
     }
 }
