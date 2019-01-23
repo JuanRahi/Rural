@@ -24,7 +24,8 @@ class Bovines extends Component {
                         <th>#</th>
                         <th>Number</th>
                         <th>Category</th>
-                        <th>Age</th>
+                        <th>Age (Years)</th>
+                        <th>Age (Months)</th>
                         <th>Owner Name</th>
                         <th>Owner Number</th>
                     </tr>

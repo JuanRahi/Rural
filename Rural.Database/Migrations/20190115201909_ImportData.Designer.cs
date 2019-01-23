@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rural.Database.DA;
 
 namespace Rural.Database.Migrations
 {
     [DbContext(typeof(RuralDatabaseContext))]
-    partial class RuralDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190115201909_ImportData")]
+    partial class ImportData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,8 +44,6 @@ namespace Rural.Database.Migrations
                     b.Property<int?>("OwnerId");
 
                     b.Property<int>("Sex");
-
-                    b.Property<int>("Status");
 
                     b.HasKey("Id");
 

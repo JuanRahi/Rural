@@ -13,7 +13,10 @@ function Bovine(props) {
                 { bovine.category }
             </td>
             <td>
-                { bovine.age }
+                { bovine.years }
+            </td>
+            <td>
+                { bovine.months }
             </td>
             <td>
                 { bovine.ownerName }

@@ -13,7 +13,11 @@ namespace Rural.Business.Mapper
         {
             CreateMap<Bovine, BovineDTO>()
                 .ForMember(dto => dto.OwnerName, e => e.MapFrom(b => b.Owner.Name))
-                .ForMember(dto => dto.OwnerNumber, e => e.MapFrom(b => b.Owner.Number));
+                .ForMember(dto => dto.OwnerNumber, e => e.MapFrom(b => b.Owner.Number))
+                .ForMember(dto => dto.Category, e => e.MapFrom(b => b.Category.ToString()))
+                .ForMember(dto => dto.Years, e => e.MapFrom(b => b.Age / 12))
+                .ForMember(dto => dto.Months, e => e.MapFrom(b => b.Age % 12));
+
         }
     }
 }

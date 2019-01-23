@@ -8,8 +8,9 @@ namespace Rural.DTOs
         public int Id { get; set; }
         public string Number { get; set; }
         public Sex Sex { get; set; }
-        public BovineCategory Category { get; set; }
-        public int Age { get; set; } //Months
+        public string Category { get; set; }
+        public int Years { get; set; }
+        public int Months { get; set; }
         public string OwnerName { get; set; }
         public string OwnerNumber { get; set; }
     }
