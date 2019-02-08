@@ -4,6 +4,7 @@ using Rural.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Rural.Business.Mapper
 {
@@ -20,7 +21,8 @@ namespace Rural.Business.Mapper
 
             CreateMap<Deal, DealDTO>()
                 .ForMember(dto => dto.Buyer, e => e.MapFrom(b => b.Buyer.Name))
-                .ForMember(dto => dto.Seller, e => e.MapFrom(b => b.Seller.Name));
+                .ForMember(dto => dto.Seller, e => e.MapFrom(b => b.Seller.Name))
+                .ForMember(dto => dto.TotalPrice, e => e.MapFrom(b => b.Items.Sum(x => x.TotalPrice * x.Count)));
 
             CreateMap<DealItem, DealItemDTO>()
                 .ForMember(dto => dto.Category, e => e.MapFrom(b => b.Category.ToString()));
