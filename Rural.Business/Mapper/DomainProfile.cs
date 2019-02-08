@@ -18,6 +18,12 @@ namespace Rural.Business.Mapper
                 .ForMember(dto => dto.Years, e => e.MapFrom(b => b.Age / 12))
                 .ForMember(dto => dto.Months, e => e.MapFrom(b => b.Age % 12));
 
+            CreateMap<Deal, DealDTO>()
+                .ForMember(dto => dto.Buyer, e => e.MapFrom(b => b.Buyer.Name))
+                .ForMember(dto => dto.Seller, e => e.MapFrom(b => b.Seller.Name));
+
+            CreateMap<DealItem, DealItemDTO>()
+                .ForMember(dto => dto.Category, e => e.MapFrom(b => b.Category.ToString()));
         }
     }
 }

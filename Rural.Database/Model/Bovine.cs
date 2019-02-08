@@ -18,5 +18,6 @@ namespace Rural.Database.Model
         public Owner Owner { get; set; }
         public Location Location { get; set; }
         public Status Status { get; set; }
+        public ICollection<BovineDeal> Deals { get; set; }
     }
 }

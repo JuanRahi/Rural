@@ -14,6 +14,7 @@ namespace Rural.Business.DI
         {
             services.AddAutoMapper();
             services.AddTransient<IBovineService, BovineService>();
+            services.AddTransient<IDealService, DealService>();
             return services;
         }
     }

@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190208190415_Deals.cs" />
+    <Compile Remove="Migrations\20190208191209_Deals.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Rural.Utils\Rural.Utils.csproj" />
   </ItemGroup>
 
