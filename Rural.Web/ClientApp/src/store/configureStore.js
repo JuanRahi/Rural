@@ -2,10 +2,12 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import * as BovinesList from '../components/bovines/list/Bovines.store';
+import * as DealsList from '../components/deals/list/Deals.store';
 
 export default function configureStore (history, initialState) {
   const reducers = {
     bovinesList: BovinesList.reducer,
+    dealsList: DealsList.reducer
   };
 
   const middleware = [

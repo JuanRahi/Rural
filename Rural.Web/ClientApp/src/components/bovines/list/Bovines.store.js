@@ -1,18 +1,31 @@
+const getColumns = (prop) => {
+  return [ 
+    { prop: 'id', header: '#' },
+    { prop: 'number', header: 'Number' },
+    { prop: 'sex', header: 'Sex' },
+    { prop: 'category', header: 'Category' },
+    { prop: 'years', header: 'Age (Years)' },
+    { prop: 'months', header: 'Age (Months)' },
+    { prop: 'ownerName', header: 'Owner Name' },
+    { prop: 'ownerNumber', header: 'Owner Number' }
+   ];
+}
+
 const requestBovinesList = 'REQUEST_BOVINES_LIST';
-const receiveBovinesList = 'RECEIVE_WEATHER_FORECASTS';
-const initialState = { bovines: [], isLoading: false };
-const BASE_URL = ''; // 'http://localhost:5000/';
+const receiveBovinesList = 'RECEIVE_BOVINES_LIST';
+const initialState = { data: [], isLoading: false, getColumns };
+const BASE_URL = '';
 
 export const actionCreators = {
-    requestBovinesList: () => async (dispatch) => {
+    fetchData: () => async (dispatch) => {
 
     dispatch({ type: requestBovinesList });
 
     const url = BASE_URL + `api/Bovines`;
     const response = await fetch(url);
-    const bovines = await response.json();
+    const data = await response.json();
 
-    dispatch({ type: receiveBovinesList, bovines });
+    dispatch({ type: receiveBovinesList, data });
   }
 };
 
@@ -29,7 +42,7 @@ export const reducer = (state, action) => {
   if (action.type === receiveBovinesList) {
     return {
       ...state,
-      bovines: action.bovines,
+      data: action.data,
       isLoading: false
     };
   }
