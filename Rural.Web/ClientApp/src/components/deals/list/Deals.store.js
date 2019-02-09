@@ -3,7 +3,8 @@ const getColumns = (prop) => {
       { prop: 'id', header: '#' },
       { prop: 'seller', header: 'Seller' },
       { prop: 'buyer', header: 'Buyer' },
-      { prop: 'date', header: 'Date' }      
+      { prop: 'date', header: 'Date' },
+      { prop: 'totalPrice', header: 'Total Price' }                  
      ];
   }
 

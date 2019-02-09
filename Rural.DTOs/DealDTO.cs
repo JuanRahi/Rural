@@ -9,7 +9,7 @@ namespace Rural.DTOs
         public int Id { get; set; }
         public string Seller { get; set; }
         public string Buyer { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public double TotalPrice { get; set; }
         public IEnumerable<DealItemDTO> Items { get; set; }
     }

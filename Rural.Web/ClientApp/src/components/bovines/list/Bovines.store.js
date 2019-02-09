@@ -6,6 +6,8 @@ const getColumns = (prop) => {
     { prop: 'category', header: 'Category' },
     { prop: 'years', header: 'Age (Years)' },
     { prop: 'months', header: 'Age (Months)' },
+    { prop: 'status', header: 'Status' },
+    { prop: 'entryDate', header: 'Entry Date' },
     { prop: 'ownerName', header: 'Owner Name' },
     { prop: 'ownerNumber', header: 'Owner Number' }
    ];
