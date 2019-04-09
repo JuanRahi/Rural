@@ -22,6 +22,8 @@ namespace Rural.Database.DA
         public DbSet<Deal> Deals { get; set; }
         public DbSet<DealItem> DealItems { get; set; }
         public DbSet<BovineDeal> BovineDeals { get; set; }
-
+        public DbSet<Control> Controls { get; set; }
+        public DbSet<BovineControl> BovineControls { get; set; }
+        public DbSet<Paddock> Paddocks { get; set; }
     }
 }
