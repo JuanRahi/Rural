@@ -11,8 +11,10 @@ namespace Rural.Database.Model
         public Deal Deal { get; set; }
         public BovineCategory Category { get; set; }
         public int Count { get; set; }
-        public double? KgPrice { get; set;}
         public double? Kgs { get; set; }
-        public double TotalPrice { get; set; }
+        public double? Performance { get; set; }
+        public double? KgPrice { get; set;}        
+        public double TotalPrice { get; set; }        
+        public double TotalPriceAfterTax { get; set; }
     }
 }

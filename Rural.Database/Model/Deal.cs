@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static Rural.Utils.EnumHelper;
 
 namespace Rural.Database.Model
 {
@@ -12,5 +13,6 @@ namespace Rural.Database.Model
         public IEnumerable<BovineDeal> Bovines { get; set; }
         public IEnumerable<DealItem> Items { get; set; }
         public DateTime Date { get; set; }
+        public DealType Type { get; set; }
     }
 }
