@@ -30,6 +30,10 @@ namespace Rural.Business.Mapper
 
             CreateMap<DealItem, DealItemDTO>()
                 .ForMember(dto => dto.Category, e => e.MapFrom(b => b.Category.ToString()));
-        }
+
+            CreateMap<Owner, OwnerDTO>()
+                .ForMember(dto => dto.Value, e => e.MapFrom(b => b.Number))
+                .ForMember(dto => dto.Label, e => e.MapFrom(b => b.Name));
+        }   
     }
 }

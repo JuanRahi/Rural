@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Grid from "../../_common/grid";
 import { actionCreators } from './Bovines.store';
+import Bovines from './Bovines';
 
 
 export default connect(
-    state => state.bovinesList,
-    dispatch => bindActionCreators(actionCreators, dispatch)
-  )(Grid);
-  
+  state => state.bovinesList,
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)(Bovines);

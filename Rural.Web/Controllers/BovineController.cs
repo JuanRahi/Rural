@@ -10,7 +10,7 @@ using Rural.DTOs;
 namespace Rural.Web.Controllers
 {
     [ApiController]
-    public class BovineController : Controller
+    public class BovineController : ControllerBase
     {
         private IBovineService BovineService { get; set; }
 
