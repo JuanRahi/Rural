@@ -16,5 +16,6 @@ namespace Rural.Database.Model
         public double? KgPrice { get; set;}        
         public double TotalPrice { get; set; }        
         public double TotalPriceAfterTax { get; set; }
+        public IEnumerable<BovineDeal> Bovines { get; set; }
     }
 }

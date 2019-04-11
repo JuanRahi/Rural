@@ -13,5 +13,8 @@ namespace Rural.Database.Model
 
         public Deal Deal { get; set; }
         public int DealId { get; set; }
+
+        public DealItem DealItem { get; set; }
+        public int? DealItemId { get; set; }
     }
 }
