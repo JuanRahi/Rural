@@ -16,6 +16,7 @@ namespace Rural.Database.Model
         public int Age { get; set; } //Months
         public DateTime EntryDate { get; set; }
         public Owner Owner { get; set; }
+        public int OwnerId { get; set; }
         public Location Location { get; set; }
         public Status Status { get; set; }
         public IEnumerable<BovineDeal> Deals { get; set; }

@@ -20,9 +20,9 @@ namespace Rural.Web.Controllers
         }
 
         [HttpGet("api/Bovines")]
-        public IEnumerable<BovineDTO> Get()
+        public IEnumerable<BovineDTO> Get([FromQuery] FilterDTO filters)
         {
-            return BovineService.GetAll();
+            return BovineService.GetAll(filters);
         }
 
         //[HttpGet("api/Bovines/{id}")]

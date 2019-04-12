@@ -1,5 +1,5 @@
 const getColumns = (prop) => {
-  return [ 
+  return [
     { prop: 'id', header: '#' },
     { prop: 'number', header: 'Number' },
     { prop: 'sex', header: 'Sex' },
@@ -10,20 +10,25 @@ const getColumns = (prop) => {
     { prop: 'entryDate', header: 'Entry Date' },
     { prop: 'ownerName', header: 'Owner Name' },
     { prop: 'ownerNumber', header: 'Owner Number' }
-   ];
+  ];
 }
 
 const requestBovinesList = 'REQUEST_BOVINES_LIST';
 const receiveBovinesList = 'RECEIVE_BOVINES_LIST';
-const initialState = { data: [], isLoading: false, getColumns };
-const BASE_URL = '';
+const defaultFilters = { owner: 1, sex: 0, status: 0 };
+const initialState = { data: [], filters: defaultFilters, isLoading: false, getColumns };
+const BASE_URL = 'https://localhost:44386/';
 
 export const actionCreators = {
-    fetchData: () => async (dispatch) => {
+  fetchData: (filters) => async (dispatch) => {
 
-    dispatch({ type: requestBovinesList });
+    dispatch({ type: requestBovinesList, filters });
 
-    const url = BASE_URL + `api/Bovines`;
+    const params = filters || defaultFilters;
+
+    let url = new URL(BASE_URL + `api/Bovines`);
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
     const response = await fetch(url);
     const data = await response.json();
 
@@ -37,6 +42,7 @@ export const reducer = (state, action) => {
   if (action.type === requestBovinesList) {
     return {
       ...state,
+      filters: action.filters || defaultFilters,
       isLoading: true
     };
   }

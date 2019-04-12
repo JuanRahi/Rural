@@ -22,9 +22,14 @@ namespace Rural.Business.Services
             Mapper = mapper;
         }
 
-        public IEnumerable<BovineDTO> GetAll()
+        public IEnumerable<BovineDTO> GetAll(FilterDTO filters)
         {
-            var bovines = Repository.GetAll().Include(x => x.Owner).ToArray();
+            var bovines = Repository.GetAll()
+                .Where(x => x.OwnerId == filters.Owner 
+                    && x.Sex == filters.Sex 
+                    && x.Status == filters.Status)
+                        .Include(x => x.Owner).ToArray();
+
             return Mapper.Map<BovineDTO[]>(bovines);
         }
 

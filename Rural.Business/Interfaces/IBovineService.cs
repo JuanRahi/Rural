@@ -7,7 +7,7 @@ namespace Rural.Business.Interfaces
 {
     public interface IBovineService
     {
-        IEnumerable<BovineDTO> GetAll();
+        IEnumerable<BovineDTO> GetAll(FilterDTO filters);
         BovineDTO Get(int id);
     }
 }

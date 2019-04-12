@@ -32,8 +32,8 @@ namespace Rural.Business.Mapper
                 .ForMember(dto => dto.Category, e => e.MapFrom(b => b.Category.ToString()));
 
             CreateMap<Owner, OwnerDTO>()
-                .ForMember(dto => dto.Value, e => e.MapFrom(b => b.Number))
-                .ForMember(dto => dto.Label, e => e.MapFrom(b => b.Name));
+                .ForMember(dto => dto.Value, e => e.MapFrom(b => b.Id))
+                .ForMember(dto => dto.Label, e => e.MapFrom(b => $"{b.Name} ({b.Number})"));
         }   
     }
 }
