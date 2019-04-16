@@ -26,7 +26,8 @@ namespace Rural.Business.Mapper
                 .ForMember(dto => dto.Buyer, e => e.MapFrom(b => b.Buyer.Name))
                 .ForMember(dto => dto.Seller, e => e.MapFrom(b => b.Seller.Name))
                 .ForMember(dto => dto.Date, e => e.MapFrom(b => b.Date.ToString("MM/dd/yyyy")))
-                .ForMember(dto => dto.TotalPrice, e => e.MapFrom(b => b.Items.Sum(x => x.TotalPrice * x.Count)));
+                .ForMember(dto => dto.TotalPrice, e => e.MapFrom(b => Math.Round(b.Items.Sum(x => x.TotalPrice), 2)))
+                .ForMember(dto => dto.TotalPriceAfterTax, e => e.MapFrom(b => Math.Round(b.Items.Sum(x => x.TotalPriceAfterTax), 2))); 
 
             CreateMap<DealItem, DealItemDTO>()
                 .ForMember(dto => dto.Category, e => e.MapFrom(b => b.Category.ToString()));

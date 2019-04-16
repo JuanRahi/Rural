@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Rural.Database.Model;
+using Rural.Database.Results;
 using Rural.Repositories.Interfaces;
 using Rural.Repositories.Repositories;
 using System;
@@ -17,6 +18,7 @@ namespace Rural.Repositories.DI
             services.AddTransient<IRepository<Location>, Repository<Location>>();
             services.AddTransient<IRepository<Deal>, Repository<Deal>>();
             services.AddTransient<IRepository<DealItem>, Repository<DealItem>>();
+            services.AddTransient<IDapperRepository<BovineDealResult>, DapperRepository<BovineDealResult>>();
             return services;
         }
     }

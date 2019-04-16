@@ -24,8 +24,8 @@ namespace Rural.Business.Services
 
         public IEnumerable<BovineDTO> GetAll(FilterDTO filters)
         {
-            var bovines = Repository.GetAll()
-                .Where(x => x.OwnerId == filters.Owner 
+            var bovines = Repository.GetAll(
+                    x => x.OwnerId == filters.Owner 
                     && x.Sex == filters.Sex 
                     && x.Status == filters.Status)
                         .Include(x => x.Owner).ToArray();

@@ -7,7 +7,8 @@ namespace Rural.Business.Interfaces
 {
     public interface IDealService
     {
-        IEnumerable<DealDTO> GetAll();
-        // DealDTO Get(int id);
+        IEnumerable<DealDTO> GetAll(DealsFilterDTO filters);
+        DealDTO Get(int id);
+        DealDTO GetBuyProfit(int dealId, int buyerId);        
     }
 }

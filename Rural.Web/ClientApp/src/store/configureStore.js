@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import * as BovinesList from '../components/bovines/list/Bovines.store';
 import * as DealsList from '../components/deals/list/Deals.store';
-import * as Owners from '../components/bovines/list/filters/owners/Owners.store';
+import * as Owners from '../components/shared/owners/Owners.store';
 import * as Sex from '../components/bovines/list/filters/sex/Sex.store';
 import * as Status from '../components/bovines/list/filters/status/Status.store';
 

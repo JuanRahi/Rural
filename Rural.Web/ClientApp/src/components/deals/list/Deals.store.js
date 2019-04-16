@@ -1,24 +1,30 @@
 const getColumns = (prop) => {
-    return [ 
-      { prop: 'id', header: '#' },
-      { prop: 'seller', header: 'Seller' },
-      { prop: 'buyer', header: 'Buyer' },
-      { prop: 'date', header: 'Date' },
-      { prop: 'totalPrice', header: 'Total Price' }                  
-     ];
-  }
+  return [
+    { prop: 'id', header: '#' },
+    { prop: 'seller', header: 'Seller' },
+    { prop: 'buyer', header: 'Buyer' },
+    { prop: 'date', header: 'Date' },
+    { prop: 'totalPrice', header: 'Total Price' },
+    { prop: 'totalPriceAfterTax', header: 'Total Price After Tax' },
+  ];
+}
 
 const requestDealsList = 'REQUEST_DEALS_LIST';
 const receiveDealsList = 'RECEIVE_DEALS_LIST';
-const initialState = { data: [], isLoading: false, getColumns };
-const BASE_URL = '';
+const defaultFilters = { seller: 1, buyer: 6, dateFrom: '2019-01-01', dateTo: '2019-12-31' };
+const initialState = { data: [], filters: defaultFilters, isLoading: false, getColumns };
+const BASE_URL = 'https://localhost:44386/';
 
 export const actionCreators = {
-    fetchData: () => async (dispatch) => {
+  fetchData: (filters) => async (dispatch) => {
 
-    dispatch({ type: requestDealsList });
+    dispatch({ type: requestDealsList, filters });
 
-    const url = BASE_URL + `api/Deals`;
+    const params = filters || defaultFilters;
+
+    let url = new URL(BASE_URL + `api/Deals`);
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
     const response = await fetch(url);
     const data = await response.json();
 
@@ -32,6 +38,7 @@ export const reducer = (state, action) => {
   if (action.type === requestDealsList) {
     return {
       ...state,
+      filters: action.filters || defaultFilters,
       isLoading: true
     };
   }

@@ -20,9 +20,11 @@ namespace Rural.Web.Controllers
         }
 
         [HttpGet("api/Deals")]
-        public IEnumerable<DealDTO> Get()
+        public IEnumerable<DealDTO> Get([FromQuery] DealsFilterDTO filters)
         {
-            return DealService.GetAll();
+            DealService.GetBuyProfit(5, 2);
+            return DealService.GetAll(filters);
+
         }
     }
 }

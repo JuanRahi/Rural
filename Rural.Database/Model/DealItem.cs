@@ -9,6 +9,7 @@ namespace Rural.Database.Model
     {
         public int Id { get; set; }
         public Deal Deal { get; set; }
+        public int DealId { get; set; }
         public BovineCategory Category { get; set; }
         public int Count { get; set; }
         public double? Kgs { get; set; }

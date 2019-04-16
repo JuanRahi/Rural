@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Owners from './owners';
+import Owners from '../../../shared/owners';
 import Sex from './sex';
 import Status from './status';
 import { Form, Row, Col } from 'reactstrap';
