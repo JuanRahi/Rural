@@ -45,25 +45,77 @@ namespace Rural.Business.Services
             throw new NotImplementedException();
         }
 
-        public DealDTO GetBuyProfit(int dealId, int buyerId)
+        public IEnumerable<BuyProfitDTO> GetBuyProfit(int dealId)
         {
-            string sql = @"SELECT 
-                            BovineId, 
-                            Category, 
-                            [Count], 
-                            TotalPriceAfterTax 
-                        FROM
-                            BovineDeals
-                        INNER JOIN 
-                            DealItems 
-                        ON 
-                            BovineDeals.DealId = DealItems.DealId
-                        WHERE 
-                            BovineDeals.DealId = @DealId";
+            var result = new List<BuyProfitDTO>();
 
-            var deals = DealDapperRepository.Query(sql, new { dealId });
-            return null;
+            string buySQL = @"SELECT 
+                                BovineId, 
+	                            [Status],
+                                Number,
+                                EntryDate,
+                                Bovines.Category, 
+                                [Count], 
+                                TotalPriceAfterTax 
+                            FROM
+                                BovineDeals
+                            INNER JOIN 
+                                DealItems 
+                            ON 
+	                            BovineDeals.DealItemId = DealItems.Id
+                            INNER JOIN 
+	                            Bovines
+                            ON
+	                            BovineDeals.BovineId = Bovines.Id
+                            WHERE 
+                                BovineDeals.DealId = @DealId
+                            ORDER BY
+                                [Status] DESC";
 
+            var buy = DealDapperRepository.Query(buySQL, new { dealId });
+
+            var bovines = buy.Select(x => x.BovineId).ToArray();
+
+            var saleSQL = @"SELECT 
+                                BovineId, 
+                                SaleDate = Deals.Date,
+                                [Count], 
+                                TotalPriceAfterTax 
+                            FROM
+                                BovineDeals
+                            INNER JOIN 
+                                DealItems 
+                            ON 
+                                BovineDeals.DealItemId = DealItems.Id
+                            INNER JOIN
+                                Deals
+                            ON 
+                                DealItems.DealId = Deals.Id
+                            
+                            WHERE 
+                                BovineDeals.DealId != @DealId
+                            AND BovineDeals.BovineId IN @Bovines";
+
+            var sale = DealDapperRepository.Query(saleSQL, new { dealId, bovines }).ToDictionary(x => x.BovineId, y => y);
+
+            foreach(var bovine in buy)
+            {
+                var buyPrice = bovine.TotalPriceAfterTax/bovine.Count;
+                var saleData = sale.GetValueOrDefault(bovine.BovineId);
+                var salePrice = saleData?.TotalPriceAfterTax/saleData?.Count ?? 0;
+
+                result.Add(new BuyProfitDTO
+                {
+                    BovineId = bovine.BovineId,
+                    Number = bovine.Number,
+                    Status = bovine.Status,
+                    Category = bovine.Category,
+                    EntryDate = bovine.EntryDate,
+                    SaleDate = saleData?.SaleDate,
+                    Profit = bovine.Status != Status.Live ? salePrice - buyPrice : 0
+                });                
+            }
+            return result;
         }
     }
 }
