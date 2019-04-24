@@ -112,7 +112,7 @@ namespace Rural.Business.Services
                     Category = bovine.Category,
                     EntryDate = bovine.EntryDate,
                     SaleDate = saleData?.SaleDate,
-                    Profit = bovine.Status != Status.Live ? salePrice - buyPrice : 0
+                    Profit = bovine.Status != Status.Live ? Math.Round(salePrice - buyPrice, 2) : 0
                 });                
             }
             return result;
