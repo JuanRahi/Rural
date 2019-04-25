@@ -7,13 +7,64 @@ using System.Text;
 
 namespace Rural.Repositories.Repositories
 {
-    public class BovineDealRepository<BovineDealResult> : DapperRepository<BovineDealResult>, IDapperRepository<BovineDealResult> where BovineDealResult : class
+    public class BovineDealRepository<BovineDealResult> : DapperRepository<BovineDealResult>, IBovineDealRepository<BovineDealResult> where BovineDealResult : class
     {
         public BovineDealRepository(RuralDatabaseContext context) : base(context) { }
 
         public override IQueryable<BovineDealResult> GetAll(object parameters)
         {
-            var sql = @"";
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<BovineDealResult> GetBuy(int dealId)
+        {
+            var sql = @"SELECT 
+                            BovineId, 
+	                        [Status],
+                            Number,
+                            EntryDate,
+                            Bovines.Category, 
+                            [Count], 
+                            TotalPriceAfterTax 
+                        FROM
+                            BovineDeals
+                        INNER JOIN 
+                            DealItems 
+                        ON 
+	                        BovineDeals.DealItemId = DealItems.Id
+                        INNER JOIN 
+	                        Bovines
+                        ON
+	                        BovineDeals.BovineId = Bovines.Id
+                        WHERE 
+                            BovineDeals.DealId = @DealId
+                        ORDER BY
+                            [Status] DESC";
+
+            return base.Query(sql, new { dealId });
+        }
+
+        public IQueryable<BovineDealResult> GetSales(object parameters)
+        {
+            var sql = @"SELECT 
+                            BovineId, 
+                            SaleDate = Deals.Date,
+                            [Count], 
+                            TotalPriceAfterTax 
+                        FROM
+                            BovineDeals
+                        INNER JOIN 
+                            DealItems 
+                        ON 
+                            BovineDeals.DealItemId = DealItems.Id
+                        INNER JOIN
+                            Deals
+                        ON 
+                            DealItems.DealId = Deals.Id
+                            
+                        WHERE 
+                            BovineDeals.DealId != @DealId
+                        AND BovineDeals.BovineId IN @Bovines";
 
             return base.Query(sql, parameters);
         }
