@@ -7,11 +7,11 @@ using System.Text;
 
 namespace Rural.Repositories.Repositories
 {
-    public class BovineRepository<BovineResult>: DapperRepository<BovineResult>, IBovineRepository<BovineResult> where BovineResult : class
+    public class BovineRepository<BovineResult>: DapperRepository<BovineResult>, IDapperRepository<BovineResult> where BovineResult : class
     {
         public BovineRepository(RuralDatabaseContext context) : base(context) { }
 
-        public IQueryable<BovineResult> GetAll(object parameters)
+        public override IQueryable<BovineResult> GetAll(object parameters)
         {
             var sql = @"SELECT 
 	                        Id = Bovines.Id, 

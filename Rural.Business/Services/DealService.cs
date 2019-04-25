@@ -16,27 +16,21 @@ namespace Rural.Business.Services
     public class DealService: IDealService
     {
         private IRepository<Deal> DealRepository { get; set; }
-        private IDapperRepository<BovineDealResult> DealDapperRepository { get; set; }
+        private IDapperRepository<DealResult> DealDapperRepository { get; set; }
+        private IDapperRepository<BovineDealResult> BovineDealDapperRepository { get; set; }
         private readonly IMapper Mapper;
 
-        public DealService(IRepository<Deal> deals, IDapperRepository<BovineDealResult> dealsDapper, IMapper mapper)
+        public DealService(IRepository<Deal> deals, IDapperRepository<DealResult> dealsDapper, IDapperRepository<BovineDealResult> bovineDeals, IMapper mapper)
         {
             DealRepository = deals;
-            DealDapperRepository = dealsDapper;          
+            DealDapperRepository = dealsDapper;
+            BovineDealDapperRepository = bovineDeals;
             Mapper = mapper;
         }
 
         public IEnumerable<DealDTO> GetAll(DealsFilterDTO filters)
         {
-            var deals = DealRepository.GetAll
-                    (x => x.SellerId == filters.Seller 
-                    && x.BuyerId == filters.Buyer
-                    && x.Date >= filters.DateFrom 
-                    && x.Date <= filters.DateTo)
-                .Include(x => x.Buyer)
-                .Include(x => x.Seller)
-                .Include(x => x.Items).ToArray();
-
+            var deals = DealDapperRepository.GetAll(filters).ToArray();
             return Mapper.Map<DealDTO[]>(deals);
         }
 
@@ -72,7 +66,7 @@ namespace Rural.Business.Services
                             ORDER BY
                                 [Status] DESC";
 
-            var buy = DealDapperRepository.Query(buySQL, new { dealId });
+            var buy = BovineDealDapperRepository.Query(buySQL, new { dealId });
 
             var bovines = buy.Select(x => x.BovineId).ToArray();
 
@@ -96,7 +90,7 @@ namespace Rural.Business.Services
                                 BovineDeals.DealId != @DealId
                             AND BovineDeals.BovineId IN @Bovines";
 
-            var sale = DealDapperRepository.Query(saleSQL, new { dealId, bovines }).ToDictionary(x => x.BovineId, y => y);
+            var sale = BovineDealDapperRepository.Query(saleSQL, new { dealId, bovines }).ToDictionary(x => x.BovineId, y => y);
 
             foreach(var bovine in buy)
             {

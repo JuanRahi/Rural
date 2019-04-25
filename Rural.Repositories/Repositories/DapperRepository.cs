@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Rural.Repositories.Repositories
 {
-    public class DapperRepository<T> : IDapperRepository<T> where T : class
+    public abstract class DapperRepository<T> : IDapperRepository<T> where T : class
     {
         private RuralDatabaseContext context { get; set; }
 
@@ -23,5 +23,7 @@ namespace Rural.Repositories.Repositories
             return context.Database.GetDbConnection().Query<T>
                 (sql, parameters, null, true, null, System.Data.CommandType.Text).AsQueryable<T>();
         }
+
+        public abstract IQueryable<T> GetAll(object parameters);
     }
 }

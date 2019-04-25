@@ -15,10 +15,10 @@ namespace Rural.Business.Services
     public class BovineService: IBovineService
     {
         private IRepository<Bovine> Repository { get; set; }
-        private IBovineRepository<BovineResult> BovineDapperRepository { get; set; }
+        private IDapperRepository<BovineResult> BovineDapperRepository { get; set; }
         private readonly IMapper Mapper;
 
-        public BovineService(IRepository<Bovine> repository, IBovineRepository<BovineResult> dapperRepository, IMapper mapper)
+        public BovineService(IRepository<Bovine> repository, IDapperRepository<BovineResult> dapperRepository, IMapper mapper)
         {
             Repository = repository;
             BovineDapperRepository = dapperRepository;
