@@ -19,6 +19,7 @@ namespace Rural.Repositories.DI
             services.AddTransient<IRepository<Deal>, Repository<Deal>>();
             services.AddTransient<IRepository<DealItem>, Repository<DealItem>>();
             services.AddTransient<IDapperRepository<BovineDealResult>, DapperRepository<BovineDealResult>>();
+            services.AddTransient<IBovineRepository<BovineResult>, BovineRepository<BovineResult>>();
             return services;
         }
     }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Rural.Database.Results;
 
 namespace Rural.Business.Mapper
 {
@@ -21,6 +22,8 @@ namespace Rural.Business.Mapper
                 .ForMember(dto => dto.Years, e => e.MapFrom(b => b.Age / 12))
                 .ForMember(dto => dto.Months, e => e.MapFrom(b => b.Age % 12))
                 .ForMember(dto => dto.EntryDate, e => e.MapFrom(b => b.EntryDate.ToString("MM/dd/yyyy")));
+
+            CreateMap<BovineResult, BovineDTO>();
 
             CreateMap<Deal, DealDTO>()
                 .ForMember(dto => dto.Buyer, e => e.MapFrom(b => b.Buyer.Name))
