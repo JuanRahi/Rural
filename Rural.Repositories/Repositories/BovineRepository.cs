@@ -32,11 +32,12 @@ namespace Rural.Repositories.Repositories
                         ON 
                             OwnerId = Owners.Id
                         WHERE
-                            OwnerId = @Owner
+                            OwnerId IN @Owners
                         AND 
-                            Sex = @Sex
+                            Sex IN @Sex
                         AND
-                            [Status] = @Status";
+                            [Status] IN @Status
+                        ORDER BY OwnerName, EntryDate";
 
             return base.Query(sql, parameters);
         }

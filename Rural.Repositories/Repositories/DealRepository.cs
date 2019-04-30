@@ -36,9 +36,9 @@ namespace Rural.Repositories.Repositories
                         ON 
                             Deals.Id = DealItems.DealId
                         WHERE
-		                    SellerId = @Seller
+		                    SellerId IN @Sellers
 	                    AND 
-                            BuyerId  = @Buyer 
+                            BuyerId  IN @Buyers
 	                    AND 
                             [Date] BETWEEN @DateFrom AND @DateTo
                         GROUP BY
@@ -46,7 +46,8 @@ namespace Rural.Repositories.Repositories
                             [Date],
                             [Type],	   
                             Seller.Name,
-                            Buyer.Name";
+                            Buyer.Name
+                        ORDER BY [Date] DESC";
 
             return base.Query(sql, parameters);
         }

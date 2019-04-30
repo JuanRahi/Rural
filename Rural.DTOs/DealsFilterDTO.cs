@@ -6,8 +6,8 @@ namespace Rural.DTOs
 {
     public class DealsFilterDTO
     {
-        public int Seller { get; set; }
-        public int Buyer { get; set; }
+        public int[] Sellers { get; set; }
+        public int[] Buyers { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
     }

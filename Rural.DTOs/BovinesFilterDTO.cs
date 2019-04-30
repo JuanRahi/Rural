@@ -7,8 +7,8 @@ namespace Rural.DTOs
 {
     public class FilterDTO
     {
-        public int Owner { get; set; }
-        public Sex Sex { get; set; }
-        public Status Status { get; set; }        
+        public int[] Owners { get; set; }
+        public Sex[] Sex { get; set; }
+        public Status[] Status { get; set; }        
     }
 }

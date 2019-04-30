@@ -1,3 +1,5 @@
+import buildURL from "../../../utils/queryString";
+
 const getColumns = (prop) => {
   return [
     { prop: 'id', header: '#' },
@@ -15,9 +17,8 @@ const getColumns = (prop) => {
 
 const requestBovinesList = 'REQUEST_BOVINES_LIST';
 const receiveBovinesList = 'RECEIVE_BOVINES_LIST';
-const defaultFilters = { owner: 1, sex: 0, status: 0 };
+const defaultFilters = { owners: [1], sex: [0], status: [0] };
 const initialState = { data: [], filters: defaultFilters, isLoading: false, getColumns };
-const BASE_URL = 'https://localhost:44386/';
 
 export const actionCreators = {
   fetchData: (filters) => async (dispatch) => {
@@ -25,10 +26,7 @@ export const actionCreators = {
     dispatch({ type: requestBovinesList, filters });
 
     const params = filters || defaultFilters;
-
-    let url = new URL(BASE_URL + `api/Bovines`);
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-
+    const url = buildURL(`api/Bovines`, params);
     const response = await fetch(url);
     const data = await response.json();
 

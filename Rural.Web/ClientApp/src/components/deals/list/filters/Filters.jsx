@@ -6,49 +6,51 @@ import Owners from '../../../shared/owners';
 class Filter extends Component {
 
     handleSellerChange = (e) => {
-        const { buyer, dateFrom, dateTo } = this.props;
-        const seller = parseInt(e.value, 10);
-        this.props.fetchData({ seller, buyer, dateFrom, dateTo });
+        const { buyers, dateFrom, dateTo } = this.props;
+        const sellers = e.map(x => x.value);
+        this.props.fetchData({ sellers, buyers, dateFrom, dateTo });
     }
 
     handleBuyerChange = (e) => {
-        const { seller, dateFrom, dateTo } = this.props;
-        const buyer = parseInt(e.value, 10);
-        this.props.fetchData({ seller, buyer, dateFrom, dateTo });
+        const { sellers, dateFrom, dateTo } = this.props;
+        const buyers = e.map(x => x.value);
+        this.props.fetchData({ sellers, buyers, dateFrom, dateTo });
     }
 
     handleDateFromChange = (e) => {
-        const { seller, buyer, dateTo } = this.props;
+        const { sellers, buyers, dateTo } = this.props;
         const dateFrom = e.target.value;
-        this.props.fetchData({ seller, buyer, dateFrom, dateTo });
+        this.props.fetchData({ sellers, buyers, dateFrom, dateTo });
     }
 
     handleDateToChange = (e) => {
-        const { seller, buyer, dateFrom } = this.props;
+        const { sellers, buyers, dateFrom } = this.props;
         const dateTo = e.target.value;
-        this.props.fetchData({ seller, buyer, dateFrom, dateTo });
+        this.props.fetchData({ sellers, buyers, dateFrom, dateTo });
     }
 
     render() {
-        const { seller, buyer, dateFrom, dateTo } = this.props;
+        const { sellers, buyers, dateFrom, dateTo } = this.props;
         return (
             <Form>
                 <Row form>
-                    <Col md={3}>
+                    <Col md={4}>
                         <Owners
                             label="Seller"
-                            value={seller}
+                            value={sellers}
+                            isMulti={true}
                             handleChange={(e) => this.handleSellerChange(e)}>
                         </Owners>
                     </Col>
-                    <Col md={3}>
+                    <Col md={4}>
                         <Owners
                             label="Buyer"
-                            value={buyer}
+                            value={buyers}
+                            isMulti={true}
                             handleChange={(e) => this.handleBuyerChange(e)}>
                         </Owners>
                     </Col>
-                    <Col md={3}>
+                    <Col md={2}>
                         <FormGroup>
                             <Label for="dateFrom">From</Label>
                             <Input
@@ -60,7 +62,7 @@ class Filter extends Component {
                             </Input>
                         </FormGroup>
                     </Col>
-                    <Col md={3}>
+                    <Col md={2}>
                         <FormGroup>
                             <Label for="dateTo">To</Label>
                             <Input
@@ -80,9 +82,8 @@ class Filter extends Component {
 
 Filter.propTypes = {
     fetchData: PropTypes.func.isRequired,
-    owner: PropTypes.number.isRequired,
-    sex: PropTypes.number.isRequired,
-    status: PropTypes.number.isRequired,
+    sellers: PropTypes.array.isRequired,
+    buyers: PropTypes.array.isRequired,
 };
 
 

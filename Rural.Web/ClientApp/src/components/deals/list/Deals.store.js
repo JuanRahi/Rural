@@ -1,3 +1,5 @@
+import buildURL from '../../../utils/queryString';
+
 const getColumns = (prop) => {
   return [
     { prop: 'id', header: '#' },
@@ -11,9 +13,8 @@ const getColumns = (prop) => {
 
 const requestDealsList = 'REQUEST_DEALS_LIST';
 const receiveDealsList = 'RECEIVE_DEALS_LIST';
-const defaultFilters = { seller: 1, buyer: 6, dateFrom: '2019-01-01', dateTo: '2019-12-31' };
+const defaultFilters = { sellers: [1], buyers: [6], dateFrom: '2019-01-01', dateTo: '2019-12-31' };
 const initialState = { data: [], filters: defaultFilters, isLoading: false, getColumns };
-const BASE_URL = 'https://localhost:44386/';
 
 export const actionCreators = {
   fetchData: (filters) => async (dispatch) => {
@@ -21,10 +22,7 @@ export const actionCreators = {
     dispatch({ type: requestDealsList, filters });
 
     const params = filters || defaultFilters;
-
-    let url = new URL(BASE_URL + `api/Deals`);
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-
+    const url = buildURL(`api/Deals`, params);
     const response = await fetch(url);
     const data = await response.json();
 

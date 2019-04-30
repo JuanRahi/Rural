@@ -10,15 +10,16 @@ class Dropdown extends Component {
     }
 
     render() {
-        const { data, value, label, handleChange } = this.props;
-        const selectedOptions = data.find(x => x.value === value);
+        const { data, value, label, handleChange, isMulti } = this.props;
+        const selectedOptions = data.filter(x => value.includes(x.value));
         return (
             <FormGroup>
                 <Label for={label}>{label}</Label>
                 <Select
                     options={data}
                     value={selectedOptions}
-                    onChange={handleChange}>
+                    onChange={handleChange}
+                    isMulti={isMulti}>
                 </Select>
             </FormGroup>
         );
@@ -28,8 +29,9 @@ class Dropdown extends Component {
 Dropdown.propTypes = {
     fetchData: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
+    isMulti: PropTypes.bool.isRequired,
     data: PropTypes.array.isRequired,
-    value: PropTypes.number.isRequired,
+    value: PropTypes.array.isRequired,
     label: PropTypes.string.isRequired,
     handleChange: PropTypes.func.isRequired,
 };

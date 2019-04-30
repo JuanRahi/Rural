@@ -9,31 +9,32 @@ class Filter extends Component {
 
     handleOwnerChange = (e) => {
         const { sex, status } = this.props;
-        const owner = parseInt(e.value, 10);
-        this.props.fetchData({ owner, sex, status });
+        const owners = e.map(x => x.value);
+        this.props.fetchData({ owners, sex, status });
     }
 
     handleSexChange = (e) => {
-        const { owner, status } = this.props;
-        const sex = parseInt(e.value, 10);
-        this.props.fetchData({ owner, sex, status });
+        const { owners, status } = this.props;
+        const sex = e.map(x => x.value);
+        this.props.fetchData({ owners, sex, status });
     }
 
     handleStatusChange = (e) => {
-        const { owner, sex } = this.props;
-        const status = parseInt(e.value, 10);
-        this.props.fetchData({ owner, sex, status });
+        const { owners, sex } = this.props;
+        const status = e.map(x => x.value);
+        this.props.fetchData({ owners, sex, status });
     }
 
     render() {
-        const { owner, sex, status } = this.props;
+        const { owners, sex, status } = this.props;
         return (
             <Form>
                 <Row form>
                     <Col md={6}>
                         <Owners
                             label="Owner"
-                            value={owner}
+                            value={owners}
+                            isMulti={true}
                             handleChange={(e) => this.handleOwnerChange(e)}>
                         </Owners>
                     </Col>
@@ -41,6 +42,7 @@ class Filter extends Component {
                         <Sex
                             label="Sex"
                             value={sex}
+                            isMulti={true}
                             handleChange={(e) => this.handleSexChange(e)}>
                         </Sex>
                     </Col>
@@ -48,6 +50,7 @@ class Filter extends Component {
                         <Status
                             label="Status"
                             value={status}
+                            isMulti={true}
                             handleChange={(e) => this.handleStatusChange(e)}>
                         </Status>
                     </Col>
@@ -59,9 +62,9 @@ class Filter extends Component {
 
 Filter.propTypes = {
     fetchData: PropTypes.func.isRequired,
-    owner: PropTypes.number.isRequired,
-    sex: PropTypes.number.isRequired,
-    status: PropTypes.number.isRequired,
+    owners: PropTypes.array.isRequired,
+    sex: PropTypes.array.isRequired,
+    status: PropTypes.array.isRequired,
 };
 
 
