@@ -6,11 +6,13 @@ import * as DealsList from '../components/deals/list/Deals.store';
 import * as Owners from '../components/shared/owners/Owners.store';
 import * as Sex from '../components/bovines/list/filters/sex/Sex.store';
 import * as Status from '../components/bovines/list/filters/status/Status.store';
+import * as Buy from '../components/deals/buys/details/Buy.store';
 
 export default function configureStore(history, initialState) {
   const reducers = {
     bovinesList: BovinesList.reducer,
     dealsList: DealsList.reducer,
+    buyDetails: Buy.reducer,
     owners: Owners.reducer,
     sex: Sex.reducer,
     status: Status.reducer

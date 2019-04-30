@@ -6,32 +6,33 @@ import Header from './header';
 
 class Grid extends Component {
 
-    componentDidMount(){
-        this.props.fetchData();
+    componentDidMount() {
+        const { fetchData, params } = this.props;
+        fetchData(params);
     }
 
-    render() {        
+    render() {
         const { data, isLoading, getColumns } = this.props;
-        
-        if(isLoading)
+
+        if (isLoading)
             return null;
 
-        if(data.length === 0)
+        if (data.length === 0)
             return (<div>No data</div>);
 
-        const columns = getColumns();            
-        const header = <Header { ... { columns } } />; 
-        
-        const rows = data.map((item) => 
-            (<Row key={item.id} { ...{ item, columns } } />));
+        const columns = getColumns();
+        const header = <Header {... { columns }} />;
+
+        const rows = data.map((item) =>
+            (<Row key={item.id} {...{ item, columns }} />));
 
         return (
             <Table responsive>
                 <thead>
-                    { header }
+                    {header}
                 </thead>
                 <tbody>
-                    { rows }
+                    {rows}
                 </tbody>
             </Table>
         );
@@ -40,6 +41,7 @@ class Grid extends Component {
 
 Grid.propTypes = {
     fetchData: PropTypes.func.isRequired,
+    params: PropTypes.object,
     getColumns: PropTypes.func.isRequired,
     data: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired

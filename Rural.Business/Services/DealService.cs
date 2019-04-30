@@ -58,10 +58,10 @@ namespace Rural.Business.Services
                 {
                     BovineId = bovine.BovineId,
                     Number = bovine.Number,
-                    Status = bovine.Status,
-                    Category = bovine.Category,
-                    EntryDate = bovine.EntryDate,
-                    SaleDate = saleData?.SaleDate,
+                    Status = bovine.Status.ToString(),
+                    Category = bovine.Category.ToString(),
+                    EntryDate = bovine.EntryDate.ToString("MM/dd/yyyy"),
+                    SaleDate = saleData?.SaleDate.ToString("MM/dd/yyyy"),
                     Profit = bovine.Status != Status.Live ? Math.Round(salePrice - buyPrice, 2) : 0
                 });                
             }

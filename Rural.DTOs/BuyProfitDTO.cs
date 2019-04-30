@@ -9,10 +9,10 @@ namespace Rural.DTOs
     {
         public int BovineId { get; set; }
         public string Number { get; set; }
-        public Status Status { get; set; }
-        public BovineCategory Category { get; set; }
-        public DateTime EntryDate { get; set; }
-        public DateTime? SaleDate { get; set; }
+        public string Status { get; set; }
+        public string Category { get; set; }
+        public string EntryDate { get; set; }
+        public string SaleDate { get; set; }
         public double Profit { get; set; }
     }
 }
