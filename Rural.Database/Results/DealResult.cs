@@ -12,6 +12,7 @@ namespace Rural.Database.Results
         public string Buyer { get; set; }
         public DateTime Date { get; set; }
         public DealType Type { get; set; }
+        public int Count { get; set; }
         public double TotalPrice { get; set; }
         public double TotalPriceAfterTax { get; set; }
     }

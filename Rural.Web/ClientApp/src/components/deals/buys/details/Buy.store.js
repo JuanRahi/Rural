@@ -8,6 +8,10 @@ const getColumns = (prop) => {
         { prop: 'category', header: 'Category' },
         { prop: 'entryDate', header: 'Entry Date' },
         { prop: 'saleDate', header: 'Sale Date' },
+        { prop: 'yearsInField', header: 'Time (Years)' },
+        { prop: 'monthsInField', header: 'Time (Months)' },
+        { prop: 'buyPrice', header: 'Buy' },
+        { prop: 'salePrice', header: 'Sale' },
         { prop: 'profit', header: 'Profit' },
     ];
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'react-bootstrap';
+import { Table } from 'reactstrap';
 import Row from './row'
 import Header from './header';
 
@@ -27,14 +27,19 @@ class Grid extends Component {
             (<Row key={item.id} {...{ item, columns }} />));
 
         return (
-            <Table responsive>
-                <thead>
-                    {header}
-                </thead>
-                <tbody>
-                    {rows}
-                </tbody>
-            </Table>
+            <React.Fragment>
+                <Table responsive>
+                    <thead>
+                        {header}
+                    </thead>
+                    <tbody>
+                        {rows}
+                    </tbody>
+                </Table>
+                <div>
+                    Total rows: {data.length}
+                </div>
+            </React.Fragment>
         );
     }
 }

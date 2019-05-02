@@ -6,6 +6,7 @@ const getColumns = (prop) => {
     { prop: 'seller', header: 'Seller' },
     { prop: 'buyer', header: 'Buyer' },
     { prop: 'date', header: 'Date' },
+    { prop: 'count', header: 'Count' },
     { prop: 'totalPrice', header: 'Total Price' },
     { prop: 'totalPriceAfterTax', header: 'Total Price After Tax' },
   ];

@@ -19,6 +19,7 @@ namespace Rural.Repositories.Repositories
                             [Type],	   
                             Seller = Seller.Name,
                             Buyer = Buyer.Name,
+                            [Count] = SUM(Count),
                             TotalPrice = SUM(TotalPrice),
                             TotalPriceAfterTax = SUM(TotalPriceAfterTax)
                         FROM 

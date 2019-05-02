@@ -62,10 +62,16 @@ namespace Rural.Business.Services
                     Category = bovine.Category.ToString(),
                     EntryDate = bovine.EntryDate.ToString("MM/dd/yyyy"),
                     SaleDate = saleData?.SaleDate.ToString("MM/dd/yyyy"),
+                    YearsInField = saleData != null ? (int)(saleData.SaleDate - bovine.EntryDate).TotalDays / 365:
+                        (int)(DateTime.Now.Date - bovine.EntryDate).TotalDays / 365,
+                    MonthsInField = saleData != null ? (int)(saleData.SaleDate - bovine.EntryDate).TotalDays % 365 / 30 :
+                        (int)(DateTime.Now.Date - bovine.EntryDate).TotalDays % 365 / 30,
+                    BuyPrice = Math.Round(buyPrice, 2),
+                    SalePrice = Math.Round(salePrice, 2),
                     Profit = bovine.Status != Status.Live ? Math.Round(salePrice - buyPrice, 2) : 0
                 });                
             }
-            return result;
+            return result.OrderByDescending(x => x.SaleDate).ThenBy(x => x.Status);
         }
     }
 }

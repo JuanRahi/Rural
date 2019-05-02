@@ -13,6 +13,10 @@ namespace Rural.DTOs
         public string Category { get; set; }
         public string EntryDate { get; set; }
         public string SaleDate { get; set; }
+        public double YearsInField { get; set; }
+        public double MonthsInField { get; set; }
+        public double BuyPrice { get; set; }
+        public double SalePrice { get; set; }
         public double Profit { get; set; }
     }
 }
