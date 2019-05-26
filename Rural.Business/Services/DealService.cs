@@ -15,14 +15,12 @@ namespace Rural.Business.Services
 {
     public class DealService: IDealService
     {
-        private IRepository<Deal> DealRepository { get; set; }
         private IDapperRepository<DealResult> DealDapperRepository { get; set; }
         private IBovineDealRepository<BovineDealResult> BovineDealDapperRepository { get; set; }
         private readonly IMapper Mapper;
 
-        public DealService(IRepository<Deal> deals, IDapperRepository<DealResult> dealsDapper, IBovineDealRepository<BovineDealResult> bovineDeals, IMapper mapper)
+        public DealService(IDapperRepository<DealResult> dealsDapper, IBovineDealRepository<BovineDealResult> bovineDeals, IMapper mapper)
         {
-            DealRepository = deals;
             DealDapperRepository = dealsDapper;
             BovineDealDapperRepository = bovineDeals;
             Mapper = mapper;
@@ -39,9 +37,12 @@ namespace Rural.Business.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<BuyProfitDTO> GetBuyProfit(int dealId)
+        public BuyDTO GetBuyProfit(int dealId)
         {
-            var result = new List<BuyProfitDTO>();
+            var result = new BuyDTO();
+            var bovinesProfit = new List<BuyProfitDTO>();
+
+            // var deal = DealDapperRepository.GetAll(dealId);
 
             var buy = BovineDealDapperRepository.GetBuy(dealId);
             var bovines = buy.Select(x => x.BovineId).ToArray();
@@ -54,7 +55,7 @@ namespace Rural.Business.Services
                 var saleData = sale.GetValueOrDefault(bovine.BovineId);
                 var salePrice = saleData?.TotalPriceAfterTax/saleData?.Count ?? 0;
 
-                result.Add(new BuyProfitDTO
+                bovinesProfit.Add(new BuyProfitDTO
                 {
                     BovineId = bovine.BovineId,
                     Number = bovine.Number,
@@ -71,7 +72,10 @@ namespace Rural.Business.Services
                     Profit = bovine.Status != Status.Live ? Math.Round(salePrice - buyPrice, 2) : 0
                 });                
             }
-            return result.OrderByDescending(x => x.SaleDate).ThenBy(x => x.Status);
+
+            result.Bovines = bovinesProfit.OrderByDescending(x => x.SaleDate).ThenBy(x => x.Status).ToArray();
+            return result;
         }
+        
     }
 }

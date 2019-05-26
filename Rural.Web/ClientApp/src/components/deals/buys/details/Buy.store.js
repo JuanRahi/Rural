@@ -47,7 +47,7 @@ export const reducer = (state, action) => {
     if (action.type === receiveBuyDetails) {
         return {
             ...state,
-            data: action.data,
+            data: action.data.bovines,
             isLoading: false
         };
     }

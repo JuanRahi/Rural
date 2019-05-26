@@ -11,6 +11,11 @@ namespace Rural.Repositories.Repositories
     {
         public BovineRepository(RuralDatabaseContext context) : base(context) { }
 
+        public override BovineResult Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public override IQueryable<BovineResult> GetAll(object parameters)
         {
             var sql = @"SELECT 

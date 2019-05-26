@@ -26,7 +26,7 @@ namespace Rural.Web.Controllers
         }
 
         [HttpGet("api/Buys/{id}")]
-        public IEnumerable<BuyProfitDTO> GetBuy(int id)
+        public BuyDTO GetBuy(int id)
         {
             return DealService.GetBuyProfit(id);
         }

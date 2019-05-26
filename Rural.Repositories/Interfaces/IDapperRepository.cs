@@ -9,5 +9,6 @@ namespace Rural.Repositories.Interfaces
     {
         IQueryable<T> Query(string sql, object parameters);
         IQueryable<T> GetAll(object parameters);
+        T Get(int id);
     }
 }

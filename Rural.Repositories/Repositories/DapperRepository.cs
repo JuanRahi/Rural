@@ -25,5 +25,7 @@ namespace Rural.Repositories.Repositories
         }
 
         public abstract IQueryable<T> GetAll(object parameters);
+
+        public abstract T Get(int id);
     }
 }

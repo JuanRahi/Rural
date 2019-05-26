@@ -11,7 +11,42 @@ namespace Rural.Repositories.Repositories
     {
         public DealRepository(RuralDatabaseContext context) : base(context) { }
 
-        public override IQueryable<DealResult> GetAll(object parameters)
+        public override DealResult Get(int id)
+        {
+            var sql = @"SELECT
+                            Deals.Id,
+                            [Date],
+                            [Type],	   
+                            Seller = Seller.Name,
+                            Buyer = Buyer.Name,
+	                        Category,
+	                        [Count],
+	                        KgPrice,
+	                        Kgs,
+                            TotalPrice = TotalPrice,
+                            TotalPriceAfterTax = TotalPriceAfterTax
+                        FROM
+                            Deals
+                            INNER JOIN
+                            Owners Seller
+                        ON
+                            SellerId = Seller.Id
+                            INNER JOIN
+                            Owners Buyer
+                        ON
+                            BuyerId = Buyer.Id
+                            INNER JOIN
+                            DealItems
+                        ON
+                            Deals.Id = DealItems.DealId
+                        WHERE DealId = @Id
+                        ORDER BY Category DESC";
+
+            return Query(sql, new { id }).FirstOrDefault();
+
+        }
+
+    public override IQueryable<DealResult> GetAll(object parameters)
         {
             var sql = @"SELECT 
                             Deals.Id,

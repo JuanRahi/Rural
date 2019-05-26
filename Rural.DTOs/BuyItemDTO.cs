@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using static Rural.Utils.EnumHelper;
 
-namespace Rural.Database.Results
+namespace Rural.DTOs
 {
-    public class DealResult
+    public class BuyItemDTO
     {
         public int Id { get; set; }
         public string Seller { get; set; }
