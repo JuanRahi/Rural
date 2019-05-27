@@ -42,7 +42,7 @@ namespace Rural.Business.Services
             var result = new BuyDTO();
             var bovinesProfit = new List<BuyProfitDTO>();
 
-            // var deal = DealDapperRepository.GetAll(dealId);
+            var deal = DealDapperRepository.Get(dealId);
 
             var buy = BovineDealDapperRepository.GetBuy(dealId);
             var bovines = buy.Select(x => x.BovineId).ToArray();
