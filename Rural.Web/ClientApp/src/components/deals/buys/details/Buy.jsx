@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Grid from '../../../_common/grid';
+import BovinesTable from './table';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 const SUMMARY = 'summary';
 const BOVINES = 'bovines'
 
 class Buy extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             key: BOVINES
@@ -24,7 +23,7 @@ class Buy extends Component {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink onClick={key => this.setState({ key: BOVINES})} className={key === BOVINES ? 'active' : ''}>
+                        <NavLink onClick={key => this.setState({ key: BOVINES })} className={key === BOVINES ? 'active' : ''}>
                             Bovines
                         </NavLink>
                     </NavItem>
@@ -34,19 +33,12 @@ class Buy extends Component {
                         <div>Summary Data</div>
                     </TabPane>
                     <TabPane tabId={BOVINES} title="Bovines">
-                        <Grid {...this.props} params={params} />
+                        <BovinesTable {... { params }} />
                     </TabPane>
                 </TabContent>
             </React.Fragment>
         );
     }
 }
-
-Buy.propTypes = {
-    fetchData: PropTypes.func.isRequired,
-    getColumns: PropTypes.func.isRequired,
-    data: PropTypes.array.isRequired,
-    isLoading: PropTypes.bool.isRequired
-};
 
 export default Buy;
