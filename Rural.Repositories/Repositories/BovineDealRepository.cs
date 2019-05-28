@@ -21,7 +21,7 @@ namespace Rural.Repositories.Repositories
             throw new NotImplementedException();
         }
 
-        public IQueryable<BovineDealResult> GetBuy(int dealId)
+        public IQueryable<BovineDealResult> GetBuy(int id)
         {
             var sql = @"SELECT 
                             BovineId, 
@@ -42,11 +42,11 @@ namespace Rural.Repositories.Repositories
                         ON
 	                        BovineDeals.BovineId = Bovines.Id
                         WHERE 
-                            BovineDeals.DealId = @DealId
+                            BovineDeals.DealId = @Id
                         ORDER BY
                             [Status] DESC";
 
-            return base.Query(sql, new { dealId });
+            return base.Query(sql, new { id });
         }
 
         public IQueryable<BovineDealResult> GetSales(object parameters)
@@ -68,7 +68,7 @@ namespace Rural.Repositories.Repositories
                             DealItems.DealId = Deals.Id
                             
                         WHERE 
-                            BovineDeals.DealId != @DealId
+                            BovineDeals.DealId != @Id
                         AND BovineDeals.BovineId IN @Bovines";
 
             return base.Query(sql, parameters);

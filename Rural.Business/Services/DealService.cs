@@ -34,20 +34,19 @@ namespace Rural.Business.Services
 
         public DealDTO Get(int id)
         {
-            throw new NotImplementedException();
+            var deal = DealDapperRepository.Get(id);
+            return Mapper.Map<DealDTO>(deal);
         }
 
-        public BuyDTO GetBuyProfit(int dealId)
+        public BuyDTO GetBuyProfit(int id)
         {
             var result = new BuyDTO();
             var bovinesProfit = new List<BuyProfitDTO>();
 
-            var deal = DealDapperRepository.Get(dealId);
-
-            var buy = BovineDealDapperRepository.GetBuy(dealId);
+            var buy = BovineDealDapperRepository.GetBuy(id);
             var bovines = buy.Select(x => x.BovineId).ToArray();
 
-            var sale = BovineDealDapperRepository.GetSales(new { dealId, bovines }).ToDictionary(x => x.BovineId, y => y);
+            var sale = BovineDealDapperRepository.GetSales(new { id, bovines }).ToDictionary(x => x.BovineId, y => y);
 
             foreach(var bovine in buy)
             {

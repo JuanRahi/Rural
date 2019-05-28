@@ -25,6 +25,13 @@ namespace Rural.Web.Controllers
             return DealService.GetAll(filters);
         }
 
+
+        [HttpGet("api/Deals/{id}")]
+        public DealDTO Get(int id)
+        {
+            return DealService.Get(id);
+        }
+
         [HttpGet("api/Buys/{id}")]
         public BuyDTO GetBuy(int id)
         {

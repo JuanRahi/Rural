@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import BovinesTable from './table';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import Summary from './summary';
+
 const SUMMARY = 'summary';
 const BOVINES = 'bovines'
 
@@ -30,7 +32,7 @@ class Buy extends Component {
                 </Nav>
                 <TabContent activeTab={this.state.key}>
                     <TabPane tabId={SUMMARY} title="Summary">
-                        <div>Summary Data</div>
+                        <Summary  {... { params }} />
                     </TabPane>
                     <TabPane tabId={BOVINES} title="Bovines">
                         <BovinesTable {... { params }} />

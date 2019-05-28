@@ -7,7 +7,7 @@ namespace Rural.Repositories.Interfaces
 {
     public interface IBovineDealRepository<T>: IDapperRepository<T> where T : class
     {
-        IQueryable<T> GetBuy(int dealId);
+        IQueryable<T> GetBuy(int id);
         IQueryable<T> GetSales(object parameters);
     }
 }

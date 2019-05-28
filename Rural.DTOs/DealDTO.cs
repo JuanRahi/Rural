@@ -12,6 +12,8 @@ namespace Rural.DTOs
         public string Date { get; set; }
         public string Type { get; set; }
         public int Count { get; set; }
+        public double KgPrice { get; set; }
+        public double Kgs { get; set; }
         public double TotalPrice { get; set; }
         public double TotalPriceAfterTax { get; set; }
     }
