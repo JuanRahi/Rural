@@ -1,3 +1,3 @@
-import BovinesContainer from './Bovines.container';
+import Bovines from './Bovines';
 
-export default BovinesContainer;
+export default Bovines;

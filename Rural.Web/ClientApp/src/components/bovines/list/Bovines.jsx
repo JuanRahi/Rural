@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Grid from '../../_common/grid';
+import BovinesTable from './table';
 import Filter from './filters';
 
 class Bovines extends Component {
@@ -9,17 +8,9 @@ class Bovines extends Component {
         return (
             <div>
                 <Filter />
-                <Grid {... this.props} />
+                <BovinesTable />
             </div>
         );
     }
 }
-
-Bovines.propTypes = {
-    fetchData: PropTypes.func.isRequired,
-    getColumns: PropTypes.func.isRequired,
-    data: PropTypes.array.isRequired,
-    isLoading: PropTypes.bool.isRequired
-};
-
 export default Bovines;

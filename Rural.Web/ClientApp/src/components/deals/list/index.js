@@ -1,3 +1,3 @@
-import DealsContainer from './Deals.container';
+import Deals from './Deals';
 
-export default DealsContainer;
+export default Deals;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Grid from '../../_common/grid';
 import Filter from './filters';
+import GridTable from './table';
 
 class Deals extends Component {
 
@@ -9,17 +8,10 @@ class Deals extends Component {
         return (
             <div>
                 <Filter />
-                <Grid {... this.props} />
+                <GridTable />
             </div>
         );
     }
 }
-
-Deals.propTypes = {
-    fetchData: PropTypes.func.isRequired,
-    getColumns: PropTypes.func.isRequired,
-    data: PropTypes.array.isRequired,
-    isLoading: PropTypes.bool.isRequired
-};
 
 export default Deals;
