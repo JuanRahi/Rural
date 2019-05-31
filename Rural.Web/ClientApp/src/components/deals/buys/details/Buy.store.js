@@ -18,7 +18,7 @@ const getColumns = (prop) => {
 
 const requestBuyDetails = 'REQUEST_BUY_DETAILS';
 const receiveBuyDetails = 'RECEIVE_BUY_DETAILS';
-const initialState = { data: [], isLoading: false, getColumns };
+const initialState = { data: { bovines: [], investment: 0, income: 0, balance: 0 }, isLoading: false, getColumns };
 
 export const actionCreators = {
     fetchData: (filters) => async (dispatch) => {
@@ -47,7 +47,7 @@ export const reducer = (state, action) => {
     if (action.type === receiveBuyDetails) {
         return {
             ...state,
-            data: action.data.bovines,
+            data: action.data,
             isLoading: false
         };
     }

@@ -33,9 +33,15 @@ namespace Rural.Web.Controllers
         }
 
         [HttpGet("api/Buys/{id}")]
-        public BuyDTO GetBuy(int id)
+        public ProfitDTO GetBuy(int id)
         {
             return DealService.GetBuyProfit(id);
+        }
+
+        [HttpGet("api/Sales/{id}")]
+        public ProfitDTO GetSale(int id)
+        {
+            return DealService.GetSaleProfit(id);
         }
     }
 }

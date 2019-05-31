@@ -38,10 +38,10 @@ namespace Rural.Business.Services
             return Mapper.Map<DealDTO>(deal);
         }
 
-        public BuyDTO GetBuyProfit(int id)
+        public ProfitDTO GetBuyProfit(int id)
         {
-            var result = new BuyDTO();
-            var bovinesProfit = new List<BuyProfitDTO>();
+            var result = new ProfitDTO();
+            var bovinesProfit = new List<BovineProfitDTO>();
 
             var buy = BovineDealDapperRepository.GetDealBovines(id);
             var bovines = buy.Select(x => x.BovineId).ToArray();
@@ -54,7 +54,7 @@ namespace Rural.Business.Services
                 var saleData = sale.GetValueOrDefault(bovine.BovineId);
                 var salePrice = saleData?.TotalPriceAfterTax/saleData?.Count ?? 0;
 
-                bovinesProfit.Add(new BuyProfitDTO
+                bovinesProfit.Add(new BovineProfitDTO
                 {
                     BovineId = bovine.BovineId,
                     Number = bovine.Number,
@@ -72,9 +72,53 @@ namespace Rural.Business.Services
                 });                
             }
 
+            result.Investment = bovinesProfit.Sum(x => x.BuyPrice);
+            result.Income = bovinesProfit.Sum(x => x.SalePrice);
+            result.Balance = result.Income - result.Investment;
             result.Bovines = bovinesProfit.OrderByDescending(x => x.SaleDate).ThenBy(x => x.Status).ToArray();
+
             return result;
         }
-        
+
+        public ProfitDTO GetSaleProfit(int id)
+        {
+            var result = new ProfitDTO();
+            var bovinesProfit = new List<BovineProfitDTO>();
+
+            var sale = BovineDealDapperRepository.GetDealBovines(id);
+            var bovines = sale.Select(x => x.BovineId).ToArray();
+
+            var buys = BovineDealDapperRepository.GetDealFromBovines(new { id, bovines }).ToDictionary(x => x.BovineId, y => y);
+
+            foreach (var bovine in sale)
+            {
+                var salePrice = bovine.TotalPriceAfterTax / bovine.Count;
+                var buyData = buys.GetValueOrDefault(bovine.BovineId);
+                var buyPrice = buyData?.TotalPriceAfterTax / buyData?.Count ?? 0;
+
+                bovinesProfit.Add(new BovineProfitDTO
+                {
+                    BovineId = bovine.BovineId,
+                    Number = bovine.Number,
+                    Status = bovine.Status.ToString(),
+                    Category = bovine.Category.ToString(),
+                    EntryDate = bovine.EntryDate.ToString("MM/dd/yyyy"),
+                    SaleDate = bovine.SaleDate.ToString("MM/dd/yyyy"),
+                    YearsInField = (int)(bovine.SaleDate - bovine.EntryDate).TotalDays / 365,
+                    MonthsInField = (int)(bovine.SaleDate - bovine.EntryDate).TotalDays % 365 / 30,
+                    BuyPrice = Math.Round(buyPrice, 2),
+                    SalePrice = Math.Round(salePrice, 2),
+                    Profit = Math.Round(salePrice - buyPrice, 2)
+                });
+            }
+
+            result.Investment = bovinesProfit.Sum(x => x.BuyPrice);
+            result.Income = bovinesProfit.Sum(x => x.SalePrice);
+            result.Balance = result.Income - result.Investment;
+            result.Bovines = bovinesProfit.OrderBy(x => x.YearsInField).ThenBy(x => x.MonthsInField).ToArray();
+
+            return result; 
+        }
+
     }
 }

@@ -28,11 +28,16 @@ namespace Rural.Repositories.Repositories
 	                        [Status],
                             Number,
                             EntryDate,
+                            SaleDate = Deals.Date,
                             Bovines.Category, 
                             [Count], 
                             TotalPriceAfterTax 
                         FROM
                             BovineDeals
+						INNER JOIN
+							Deals
+						ON
+							Deals.Id = BovineDeals.DealId
                         INNER JOIN 
                             DealItems 
                         ON 

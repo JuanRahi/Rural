@@ -2,7 +2,8 @@ import buildURL from '../../../utils/queryString';
 
 const getColumns = (prop) => {
   return [
-    { prop: 'id', header: '#', url: '/buys/:id' },
+    { prop: 'id', header: '#in', url: '/buys/:id' },
+    { prop: 'id', header: '#out', url: '/sales/:id' },
     { prop: 'seller', header: 'Seller' },
     { prop: 'buyer', header: 'Buyer' },
     { prop: 'date', header: 'Date' },
@@ -14,7 +15,7 @@ const getColumns = (prop) => {
 
 const requestDealsList = 'REQUEST_DEALS_LIST';
 const receiveDealsList = 'RECEIVE_DEALS_LIST';
-const defaultFilters = { sellers: [3,7,8,9,1007], buyers: [1], dateFrom: '2014-12-01', dateTo: '2019-12-31' };
+const defaultFilters = { sellers: [3, 7, 8, 9, 1007], buyers: [1], dateFrom: '2014-12-01', dateTo: '2019-12-31' };
 const initialState = { data: [], filters: defaultFilters, isLoading: false, getColumns };
 
 export const actionCreators = {

@@ -9,6 +9,7 @@ namespace Rural.Business.Interfaces
     {
         IEnumerable<DealDTO> GetAll(DealsFilterDTO filters);
         DealDTO Get(int id);
-        BuyDTO GetBuyProfit(int dealId);        
+        ProfitDTO GetBuyProfit(int dealId);
+        ProfitDTO GetSaleProfit(int id);
     }
 }

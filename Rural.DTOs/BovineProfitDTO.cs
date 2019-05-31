@@ -5,7 +5,7 @@ using static Rural.Utils.EnumHelper;
 
 namespace Rural.DTOs
 {
-    public class BuyProfitDTO
+    public class BovineProfitDTO
     {
         public int BovineId { get; set; }
         public string Number { get; set; }

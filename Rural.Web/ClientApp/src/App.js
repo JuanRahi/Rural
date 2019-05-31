@@ -12,5 +12,6 @@ export default () => (
     <Route path='/bovines' component={Bovines} />
     <Route path='/deals' component={Deals} />
     <Route path='/buys/:id' component={Buy} />
+    <Route path='/sales/:id' component={Buy} />
   </Layout>
 );
