@@ -43,10 +43,10 @@ namespace Rural.Business.Services
             var result = new BuyDTO();
             var bovinesProfit = new List<BuyProfitDTO>();
 
-            var buy = BovineDealDapperRepository.GetBuy(id);
+            var buy = BovineDealDapperRepository.GetDealBovines(id);
             var bovines = buy.Select(x => x.BovineId).ToArray();
 
-            var sale = BovineDealDapperRepository.GetSales(new { id, bovines }).ToDictionary(x => x.BovineId, y => y);
+            var sale = BovineDealDapperRepository.GetDealFromBovines(new { id, bovines }).ToDictionary(x => x.BovineId, y => y);
 
             foreach(var bovine in buy)
             {
