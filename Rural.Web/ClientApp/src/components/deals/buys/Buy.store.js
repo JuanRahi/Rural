@@ -1,4 +1,4 @@
-import buildURL from '../../../../utils/queryString';
+import buildURL from '../../../utils/queryString';
 
 const getColumns = (prop) => {
     return [

@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Buy from './Buy';
-import { actionCreators } from './Buy.store';
+import Summary from './Summary';
+import { actionCreators } from './Summary.store';
+import { summary } from '../../../../store/selectors';
 
 
 export default connect(
-    state => state.buyDetails,
+    summary,
     dispatch => bindActionCreators(actionCreators, dispatch)
-)(Buy);
+)(Summary);

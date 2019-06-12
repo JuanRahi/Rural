@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import BovinesTable from './table';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import Summary from './summary';
+import BovinesTable from './table';
 
 const SUMMARY = 'summary';
 const BOVINES = 'bovines'
 
-class Buy extends Component {
+class Deal extends Component {
     constructor(props) {
         super(props);
         this.state = {
             key: BOVINES
         };
     }
+
     render() {
         const params = this.props.match.params;
+        const { selector, actions } = this.props;
         const { key } = this.state;
         return (
             <React.Fragment>
@@ -35,7 +37,7 @@ class Buy extends Component {
                         <Summary  {... { params }} />
                     </TabPane>
                     <TabPane tabId={BOVINES} title="Bovines">
-                        <BovinesTable {... { params }} />
+                        <BovinesTable {... { params, selector, actions }} />
                     </TabPane>
                 </TabContent>
             </React.Fragment>
@@ -43,4 +45,4 @@ class Buy extends Component {
     }
 }
 
-export default Buy;
+export default Deal;

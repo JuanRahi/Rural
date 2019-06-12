@@ -1,4 +1,4 @@
-import buildURL from '../../../../../utils/queryString';
+import buildURL from '../../../../utils/queryString';
 
 const requestBuySummary = 'REQUEST_BUY_SUMMARY';
 const receiveBuySummary = 'RECEIVE_BUY_SUMMARY';

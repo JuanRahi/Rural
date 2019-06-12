@@ -6,15 +6,17 @@ import * as DealsList from '../components/deals/list/Deals.store';
 import * as Owners from '../components/shared/owners/Owners.store';
 import * as Sex from '../components/bovines/list/filters/sex/Sex.store';
 import * as Status from '../components/bovines/list/filters/status/Status.store';
-import * as Buy from '../components/deals/buys/details/Buy.store';
-import * as BuySummary from '../components/deals/buys/details/summary/Summary.store';
+import * as Buy from '../components/deals/buys/Buy.store';
+import * as Sale from '../components/deals/sales/Sale.store';
+import * as DealSummary from '../components/deals/details/summary/Summary.store';
 
 export default function configureStore(history, initialState) {
   const reducers = {
     bovinesList: BovinesList.reducer,
     dealsList: DealsList.reducer,
     buyDetails: Buy.reducer,
-    buySummary: BuySummary.reducer,
+    saleDetails: Sale.reducer,
+    dealSummary: DealSummary.reducer,
     owners: Owners.reducer,
     sex: Sex.reducer,
     status: Status.reducer
