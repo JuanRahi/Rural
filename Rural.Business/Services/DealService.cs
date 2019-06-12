@@ -112,9 +112,9 @@ namespace Rural.Business.Services
                 });
             }
 
-            result.Investment = bovinesProfit.Sum(x => x.BuyPrice);
-            result.Income = bovinesProfit.Sum(x => x.SalePrice);
-            result.Balance = result.Income - result.Investment;
+            result.Investment = Math.Round(bovinesProfit.Sum(x => x.BuyPrice), 2);
+            result.Income = Math.Round(bovinesProfit.Sum(x => x.SalePrice), 2);
+            result.Balance = Math.Round(result.Income - result.Investment, 2);
             result.Bovines = bovinesProfit.OrderBy(x => x.YearsInField).ThenBy(x => x.MonthsInField).ToArray();
 
             return result; 
