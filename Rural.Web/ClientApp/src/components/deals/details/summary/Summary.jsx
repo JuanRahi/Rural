@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ListGroup, ListGroupItem, Label, ListGroupItemText } from 'reactstrap';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
 class Summary extends Component {
 

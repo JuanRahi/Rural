@@ -13,12 +13,21 @@ const getColumns = (prop) => {
         { prop: 'buyPrice', header: 'Buy' },
         { prop: 'salePrice', header: 'Sale' },
         { prop: 'profit', header: 'Profit' },
+        { prop: 'profitPercentage', header: 'Profit %' },
     ];
 }
 
 const requestSaleDetails = 'REQUEST_SALE_DETAILS';
 const receiveSaleDetails = 'RECEIVE_SALE_DETAILS';
-const initialState = { data: { bovines: [], investment: 0, income: 0, balance: 0 }, isLoading: false, getColumns };
+const initialState = {
+    data: {
+        bovines: [], 
+        deal: { investment: 0, income: 0, balance: 0, profitPerUnit: 0, profitPercetage: 0 }, 
+        status: { live: 0, dead: 0, shipped: 0} 
+    },
+    isLoading: false, 
+    getColumns
+};
 
 export const actionCreators = {
     fetchData: (filters) => async (dispatch) => {

@@ -18,5 +18,6 @@ namespace Rural.DTOs
         public double BuyPrice { get; set; }
         public double SalePrice { get; set; }
         public double Profit { get; set; }
+        public double ProfitPercentage { get; set; }
     }
 }

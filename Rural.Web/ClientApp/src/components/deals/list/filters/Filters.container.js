@@ -1,10 +1,18 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { actionCreators } from '../Deals.store';
 import Filter from './Filters';
+import { filters } from '../../../../store/selectors';
 
+const mapStateToProps = (state, ownProps) => {
+    const parent = ownProps.selector(state);
+    return filters(parent);
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return bindActionCreators(ownProps.actions, dispatch)
+}
 
 export default connect(
-    state => state.dealsList.filters,
-    dispatch => bindActionCreators(actionCreators, dispatch)
+    mapStateToProps,
+    mapDispatchToProps
 )(Filter);

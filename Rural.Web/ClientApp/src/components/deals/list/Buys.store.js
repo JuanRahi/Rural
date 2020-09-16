@@ -1,0 +1,54 @@
+import buildURL from '../../../utils/queryString';
+
+const getColumns = (prop) => {
+  return [
+    { prop: 'id', header: '#', url: '/buy/:id' },    
+    { prop: 'seller', header: 'Seller' },
+    { prop: 'buyer', header: 'Buyer' },
+    { prop: 'date', header: 'Date' },
+    { prop: 'count', header: 'Count' },
+    { prop: 'totalPrice', header: 'Total Price' },
+    { prop: 'totalPriceAfterTax', header: 'Total Price After Tax' },
+  ];
+}
+
+const requestBuysList = 'REQUEST_BUYS_LIST';
+const receiveBuysList = 'RECEIVE_BUYS_LIST';
+const defaultFilters = { sellers: [3, 7, 8, 9, 1007], buyers: [1, 2], dateFrom: '2014-12-01', dateTo: '2019-12-31' };
+const initialState = { data: [], filters: defaultFilters, isLoading: false, getColumns };
+
+export const actionCreators = {
+  fetchData: (filters) => async (dispatch) => {
+
+    dispatch({ type: requestBuysList, filters });
+
+    const params = filters || defaultFilters;
+    const url = buildURL(`api/Deals`, params);
+    const response = await fetch(url);
+    const data = await response.json();
+
+    dispatch({ type: receiveBuysList, data });
+  }
+};
+
+export const reducer = (state, action) => {
+  state = state || initialState;
+
+  if (action.type === requestBuysList) {
+    return {
+      ...state,
+      filters: action.filters || defaultFilters,
+      isLoading: true
+    };
+  }
+
+  if (action.type === receiveBuysList) {
+    return {
+      ...state,
+      data: action.data,
+      isLoading: false
+    };
+  }
+
+  return state;
+};

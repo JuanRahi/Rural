@@ -1,10 +1,17 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Grid from '../../../_common/grid';
-import { actionCreators } from '../Deals.store';
 
+const mapStateToProps = (state, ownProps) => {
+    const parent = ownProps.selector(state);
+    return parent;
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return bindActionCreators(ownProps.actions, dispatch)
+}
 
 export default connect(
-    state => state.dealsList,
-    dispatch => bindActionCreators(actionCreators, dispatch)
+    mapStateToProps,
+    mapDispatchToProps
 )(Grid);

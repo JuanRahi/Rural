@@ -7,8 +7,8 @@ class Deals extends Component {
     render() {
         return (
             <div>
-                <Filter />
-                <GridTable />
+                <Filter {... this.props} />
+                <GridTable {... this.props} />
             </div>
         );
     }

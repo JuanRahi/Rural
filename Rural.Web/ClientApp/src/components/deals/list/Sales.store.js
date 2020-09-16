@@ -2,8 +2,7 @@ import buildURL from '../../../utils/queryString';
 
 const getColumns = (prop) => {
   return [
-    { prop: 'id', header: '#in', url: '/buys/:id' },
-    { prop: 'id', header: '#out', url: '/sales/:id' },
+    { prop: 'id', header: '#', url: '/sale/:id' },
     { prop: 'seller', header: 'Seller' },
     { prop: 'buyer', header: 'Buyer' },
     { prop: 'date', header: 'Date' },
@@ -13,29 +12,29 @@ const getColumns = (prop) => {
   ];
 }
 
-const requestDealsList = 'REQUEST_DEALS_LIST';
-const receiveDealsList = 'RECEIVE_DEALS_LIST';
-const defaultFilters = { sellers: [3, 7, 8, 9, 1007], buyers: [1], dateFrom: '2014-12-01', dateTo: '2019-12-31' };
+const requestSalesList = 'REQUEST_SALES_LIST';
+const receiveSalesList = 'RECEIVE_SALES_LIST';
+const defaultFilters = { sellers: [1, 2], buyers: [6, 1008], dateFrom: '2014-12-01', dateTo: '2019-12-31' };
 const initialState = { data: [], filters: defaultFilters, isLoading: false, getColumns };
 
 export const actionCreators = {
   fetchData: (filters) => async (dispatch) => {
 
-    dispatch({ type: requestDealsList, filters });
+    dispatch({ type: requestSalesList, filters });
 
     const params = filters || defaultFilters;
     const url = buildURL(`api/Deals`, params);
     const response = await fetch(url);
     const data = await response.json();
 
-    dispatch({ type: receiveDealsList, data });
+    dispatch({ type: receiveSalesList, data });
   }
 };
 
 export const reducer = (state, action) => {
   state = state || initialState;
 
-  if (action.type === requestDealsList) {
+  if (action.type === requestSalesList) {
     return {
       ...state,
       filters: action.filters || defaultFilters,
@@ -43,7 +42,7 @@ export const reducer = (state, action) => {
     };
   }
 
-  if (action.type === receiveDealsList) {
+  if (action.type === receiveSalesList) {
     return {
       ...state,
       data: action.data,

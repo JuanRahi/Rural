@@ -48,7 +48,10 @@ namespace Rural.Business.Services
 
             var sale = BovineDealDapperRepository.GetDealFromBovines(new { id, bovines }).ToDictionary(x => x.BovineId, y => y);
 
-            foreach(var bovine in buy)
+            var status = new DealStatusDTO();
+            var money = new DealProfitDTO();
+
+            foreach (var bovine in buy)
             {
                 var buyPrice = bovine.TotalPriceAfterTax/bovine.Count;
                 var saleData = sale.GetValueOrDefault(bovine.BovineId);
@@ -68,14 +71,26 @@ namespace Rural.Business.Services
                         (int)(DateTime.Now.Date - bovine.EntryDate).TotalDays % 365 / 30,
                     BuyPrice = Math.Round(buyPrice, 2),
                     SalePrice = Math.Round(salePrice, 2),
-                    Profit = bovine.Status != Status.Live ? Math.Round(salePrice - buyPrice, 2) : 0
-                });                
+                    Profit = bovine.Status != Status.Live ? Math.Round(salePrice - buyPrice, 2) : 0,
+                    ProfitPercentage = bovine.Status != Status.Live ? Math.Round(((salePrice - buyPrice) / buyPrice) * 100, 2) : 0
+                });
+
+                status.Live += (bovine.Status == Status.Live) ? 1 : 0;
+                status.Shipped += (bovine.Status == Status.Shipped) ? 1 : 0;
+                status.Dead += (bovine.Status == Status.Dead) ? 1 : 0;
+
             }
 
-            result.Investment = bovinesProfit.Sum(x => x.BuyPrice);
-            result.Income = bovinesProfit.Sum(x => x.SalePrice);
-            result.Balance = result.Income - result.Investment;
+
+            money.Investment = Math.Round(bovinesProfit.Sum(x => x.BuyPrice), 2);
+            money.Income = Math.Round(bovinesProfit.Sum(x => x.SalePrice), 2);
+            money.Balance = Math.Round(money.Income - money.Investment, 2);
+            money.ProfitPerUnit = Math.Round(money.Income / sale.Count(), 2);
+            money.ProfitPercentage = Math.Round(((money.Income - money.Investment) / money.Investment) * 100, 2) - 100;
+
             result.Bovines = bovinesProfit.OrderByDescending(x => x.SaleDate).ThenBy(x => x.Status).ToArray();
+            result.Status = status;
+            result.Deal = money;
 
             return result;
         }
@@ -89,6 +104,9 @@ namespace Rural.Business.Services
             var bovines = sale.Select(x => x.BovineId).ToArray();
 
             var buys = BovineDealDapperRepository.GetDealFromBovines(new { id, bovines }).ToDictionary(x => x.BovineId, y => y);
+
+            var status = new DealStatusDTO();
+            var money = new DealProfitDTO();
 
             foreach (var bovine in sale)
             {
@@ -108,15 +126,23 @@ namespace Rural.Business.Services
                     MonthsInField = (int)(bovine.SaleDate - bovine.EntryDate).TotalDays % 365 / 30,
                     BuyPrice = Math.Round(buyPrice, 2),
                     SalePrice = Math.Round(salePrice, 2),
-                    Profit = Math.Round(salePrice - buyPrice, 2)
+                    Profit = Math.Round(salePrice - buyPrice, 2),
+                    ProfitPercentage = bovine.Status != Status.Live ? Math.Round(((salePrice - buyPrice) / buyPrice) * 100, 2) : 0
                 });
+
+                status.Shipped ++;
             }
 
-            result.Investment = Math.Round(bovinesProfit.Sum(x => x.BuyPrice), 2);
-            result.Income = Math.Round(bovinesProfit.Sum(x => x.SalePrice), 2);
-            result.Balance = Math.Round(result.Income - result.Investment, 2);
-            result.Bovines = bovinesProfit.OrderBy(x => x.YearsInField).ThenBy(x => x.MonthsInField).ToArray();
+            money.Investment = Math.Round(bovinesProfit.Sum(x => x.BuyPrice), 2);
+            money.Income = Math.Round(bovinesProfit.Sum(x => x.SalePrice), 2);
+            money.Balance = Math.Round(money.Income - money.Investment, 2);
+            money.ProfitPerUnit = Math.Round(money.Income / sale.Count(), 2);
+            money.ProfitPercentage = Math.Round(((money.Income - money.Investment) / money.Investment) * 100, 2) - 100;
 
+            result.Bovines = bovinesProfit.OrderBy(x => x.YearsInField).ThenBy(x => x.MonthsInField).ToArray();
+            result.Status = status;
+            result.Deal = money;
+            
             return result; 
         }
 
